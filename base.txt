@@ -1,0 +1,17 @@
+#Game $num:
+
+Date | $date
+-|-|-
+Map| $map
+Link|[$mtlink]
+Replay|[[Dropbox Mirror]($dbx)]
+
+#GAME STATS
+
+$gamechart
+
+#[Map Rotation]($rotlink)
+
+<- | ->
+-|-
+Last Map: [[$lastmapname]($lastmaplink)] | Next Map: [$nextmapname]($nextmaplink)]

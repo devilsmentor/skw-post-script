@@ -1,0 +1,13 @@
+heres a list of each tag you can use in the script, go nuts
+
+$num - number in sequence
+$date - date found on website
+$map - map found on website
+$mtlink - matchlink, provided
+$dbx - dropbox, not always present
+$gamechart - makes a chart based off match and gamechart.txt (only has playerstuff)
+$rotlink - rotation link, provided
+$lastmapname - last map, must be provided
+$lastmaplink - link to lastmap, provided
+$nextmapname - same as above
+$nextmaplink - same as above
