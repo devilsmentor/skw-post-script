@@ -43,22 +43,9 @@ def returnPost(matchid,num=str(1),gamechart="",map="de_cbble",dbxlink="http://ih
     url = request.urlopen("http://cevo.com/event/csgo-10man/match/"+matchid)
     soup = BeautifulSoup(url.read(),"html.parser")
     
-    teamsoup = soup.find_all("div",{"class":"title"})
-    teamspl = []
-    for item in teamsoup:
-        text = onlyAscii(item.text)
-        teams = text
-        #teamspl.append(item)
-    teamspl = teams.split(" vs ") #My god is this hacked in, alternative solutions?
-    teamspl[1] = teamspl[1].split(" + ")[0] #Problem: find_all is also reading tags within the class "title", how can i just find the text though and not children/sibling text?
-    captain1 = teamspl[0].replace("'s Team","")
-    captain2 = teamspl[1].replace("'s Team","")
-    
     #find all player data
     t  = soup.findAll("tr", {"data-roster":"away", "class":"t"})
     ct = soup.findAll("tr", {"data-roster":"away", "class":"ct"})
-    
-    tisteam1 = 0;
     
     #get date and time from html
     datesoup = soup.find_all("span",{"class":"scheduled-time"})
@@ -68,24 +55,30 @@ def returnPost(matchid,num=str(1),gamechart="",map="de_cbble",dbxlink="http://ih
     mapsoup = soup.find_all("div",{"class":"score-seperator"})
     for item in mapsoup:
         map = item.text
-
+    
+    teamsoup = soup.find_all("div",{"class":"title"})
+    teamspl = []
+    for item in teamsoup:
+        text = onlyAscii(item.text)
+        teams = text
+        #teamspl.append(item)
+    teamspl = teams.split(" vs ") #My god is this hacked in, alternative solutions?
+    teamspl[1] = teamspl[1].split(" + ")[0] #Problem: find_all is also reading tags within the class "title", how can i just find the text though and not children/sibling text?
     if len(teamspl)==2:
-        team1a = onlyAscii(teamspl[0])
-        team2a = onlyAscii(teamspl[1])
+        team2 = onlyAscii(teamspl[0])
+        team1 = onlyAscii(teamspl[1])
     
     scoresoup = soup.find_all("div",{"class":"score"})
     scores = []
     for item in scoresoup: # there should only be 2
         scores.append(item.text)
     if (len(scores)>1):
-        score1a = onlyNumbers(scores[0])
-        score2a = onlyNumbers(scores[1])
+        score1 = onlyNumbers(scores[0])
+        score2 = onlyNumbers(scores[1])
     
     #build team1
     for line in t:
         name    = onlyAscii(line.findAll("td")[0].text.replace("\n",""))
-        if (name == captain1):
-            tisteam1 = 1
         kills   = onlyNumbers(line.findAll("td")[2].text)
         deaths  = onlyNumbers(line.findAll("td")[3].text)
         assists = onlyNumbers(line.findAll("td")[4].text)
@@ -102,18 +95,6 @@ def returnPost(matchid,num=str(1),gamechart="",map="de_cbble",dbxlink="http://ih
         players2.append(player(name,kills,deaths,assists))
     
         #open the base file
-    
-    if (tisteam1):
-        team1 = team1a
-        team2 = team2a
-        score1 = score1a
-        score2 = score2a
-    else:
-        team1 = team2a
-        team2 = team1a
-        score1 = score2a
-        score2 = score1a
-        
     pbf = open(pbf)
     gamechart = ""
     #build the gamechart based on this per-line template
@@ -133,8 +114,6 @@ def returnPost(matchid,num=str(1),gamechart="",map="de_cbble",dbxlink="http://ih
 
 if __name__ == "__main__":
     print(returnPost("307483"))
-    print("\n\n----\n\n")
-    print(returnPost("310974"))
     input("---\nRun without error\n")
 
 #a lot of code was stolen from onii-chan's web page/leaderboard system (loganford.net/skw10mans), half because i couldnt understand it, half because it was easier to rip than rewrite. 

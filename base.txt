@@ -4,14 +4,17 @@ Date | $date
 -|-|-
 Map| $map
 Link|[$mtlink]
-Replay|[[Dropbox Mirror]($dbx)]
+Replay|[[Mirror]($dbx)]
 
 #GAME STATS
 
+$team1 | K/A/D | $team2 | K/A/D
+---|---|----|----
+$score1 |  | $score2 | 
 $gamechart
 
 #[Map Rotation]($rotlink)
 
 <- | ->
 -|-
-Last Map: [[$lastmapname]($lastmaplink)] | Next Map: [$nextmapname]($nextmaplink)]
+Last Map: [[$lastmapname]($lastmaplink)] | Next Map: [[$nextmapname]($nextmaplink)]

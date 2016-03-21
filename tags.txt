@@ -11,3 +11,5 @@ $lastmapname - last map, must be provided
 $lastmaplink - link to lastmap, provided
 $nextmapname - same as above
 $nextmaplink - same as above
+$team1/2 - name of team 1 or 2
+$score1/2 - score respective to team 1 or 2

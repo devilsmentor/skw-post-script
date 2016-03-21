@@ -1,2 +1,2 @@
-python skw10mans.py
+python 10manoutput.py
 pause
