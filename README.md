@@ -3,3 +3,5 @@ Code for getting the post stuff for private 10 mans. Needs beautiful soup 4 to r
 Made in about 3 hours without food or water. This could get messy. 
 
 http://www.crummy.com/software/BeautifulSoup/
+
+download https://github.com/devilsmentor/skw-post-script/blob/master/skw10mans.zip?raw=true
